@@ -16,17 +16,18 @@
 	<!-- DO NOT CHANGE ANYTHING ABOVE THIS LINE-->
 
 	<!-- Javascript Framework (e.g., vue.js) (ADD HERE) -->
+    <script src="https://vuejs.org/js/vue.js"></script>
 	
 	
 </head>
 
   <body>
-	<div class="container">
+	<div class="container" id="vue_app">
 
-	    <div class="header">
+	    <div class="header" id="vue_app">
 		    
-	      <div class="container">
-	        <h1 id="app_title">%title%</h1>
+	      <div class="container" id="vue_app">
+	        <h1 id="app_title">{{ title }}</h1>
 	      </div>
 	      
 	    </div>
@@ -61,14 +62,42 @@
 	    <div class="footer">
 	      <div class="container">
 			<a id="github" class="btn btn-lg btn-warning">
-				<i class="fa fa-lg fa-github pull-left" aria-hidden="true"></i>%owner% %github%
+				<i class="fa fa-lg fa-github pull-left" aria-hidden="true"></i>{{ owner }} {{ github }}
 	  		</a>
 	      </div>
 	    </div>
 	</div>
   
   	<!-- This load the Vue.js code -->
-	<script type="text/javascript" src="site.js"></script>
+	<!-- <script type="text/javascript" src="site.js"> -->
+    <script type="text/javascript" src="site.js">
+
+    const vue_app = new Vue({
+          el: '#vue_app',
+          // This automatically imports your movies.json file and puts it into
+          //   the variable: movies
+          created () {
+                fetch('movies.json').then(response => response.json()).then(json => {
+                      this.movies = json
+                })
+          },
+          data: {
+                // This holds your movies.json data.
+                movies: [],
+
+                /* ADD ADDITIONAL VARIABLES FOR STEP 3 HERE */
+                title: 'IMDB + Richie’s Top 8 Movies',
+                owner: 'Richie',
+                github: 'https://github.com/RichieVo/richievo-p3'
+
+
+          },
+          methods: {
+                /* ADD FUNCTIONS/METHODS FOR STEP 7 HERE */
+          }
+    })  
+
+    </script>
 	 
   
 </body>
