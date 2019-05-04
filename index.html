@@ -50,8 +50,13 @@
 						<p class="websites">Websites: <a>{{ movies[index].imdb }}</a> | <a>{{ movies[index].website }}</a></p>
 						
 			            <div class="social">
-			              <p class="likes"><i class="fa fa-thumbs-up" aria-hidden="true"></i>{{ movies[index].likes }}</p>
-			              <p class="dislikes"><i class="fa fa-thumbs-down" aria-hidden="true"></i>{{ movies[index].dislikes }}</p>
+			                <p class="likes" @click="like()">
+                              <i class="fa fa-thumbs-up" aria-hidden="true"></i>{{ movies[index].likes }}
+                               
+                            </p>
+			                <p class="dislikes" @click="dislike()">
+                              <i class="fa fa-thumbs-down" aria-hidden="true"></i>{{ movies[index].dislikes }}
+                            </p>
 			            </div>
 	            </div> 
 	        </div>
@@ -97,7 +102,7 @@
           methods: {
                 /* ADD FUNCTIONS/METHODS FOR STEP 7 HERE */
                 //Date Converter
-                function makeTextDate(dateArray) {
+                makeTextDate(dateArray) {
                     var year = dateArray[0];
                     var month = dateArray[1];
                     var day = dateArray[2];
@@ -119,26 +124,34 @@
                     var alphaMonth = monthArray[month];
                     return alphaMonth + " " + day + ", " + year;
               
-                }
+                },
                 
                 //Like Counter
-                function like(index) {
-        
-                }
+                like(movies[index].likes) {
+                    movies[index].likes++;
+                    return movies[index].likes;
+                },
                 
                 //Dislike Counter
-                function dislike(index) {
-        
-                }
+                dislike(dislikes) {
+                    movies[index].dislikes;
+                    return movies[index].dislikes;
+                },
                 
                 //Poster Click
-                function posterClick(index) {
+                posterClick(index) {
         
-                }
+                },
                 
                 //Time Converter
-                function timeText(minutes) {
-        
+                timeText(minutes) {
+                    //variable reassignment
+                    var num = minutes;
+                    var hour = (num / 60);
+                    var nhours = Math.floor(hour);
+                    var minute = (hour - nhours) * 60;
+                    var nminutes = Math.round(minute);
+                    return nhours + "h " + nminutes + "m ";
                 }
                 
               
