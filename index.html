@@ -40,7 +40,7 @@
 	        <div class="col-md-6" v-for="(movie, index) in movies" :key="index"> 
 	            <div class="thumbnail">
 
-						<img class="poster" />
+						<img class="poster" v-bind:src = "movie.posters[movie.posterindex]"/>
 						<div class="imageInfo">{{ movies[index].posterIndex }}</div>
 						
 						<p class="title">{{ movies[index].title }} ({{ movies[index].country }})</p> 
@@ -50,11 +50,11 @@
 						<p class="websites">Websites: <a>{{ movies[index].imdb }}</a> | <a>{{ movies[index].website }}</a></p>
 						
 			            <div class="social">
-			                <p class="likes" @click="like()">
+			                <p class="likes" @click="like(index)">
                               <i class="fa fa-thumbs-up" aria-hidden="true"></i>{{ movies[index].likes }}
                                
                             </p>
-			                <p class="dislikes" @click="dislike()">
+			                <p class="dislikes" @click="dislike(index)">
                               <i class="fa fa-thumbs-down" aria-hidden="true"></i>{{ movies[index].dislikes }}
                             </p>
 			            </div>
@@ -77,7 +77,7 @@
   
   	<!-- This load the Vue.js code -->
 	<!-- <script type="text/javascript" src="site.js"> -->
-    <script type="text/javascript" src="site.js">
+    <script type="text/javascript" >
 
     const vue_app = new Vue({
           el: '#vue_app',
@@ -102,7 +102,7 @@
           methods: {
                 /* ADD FUNCTIONS/METHODS FOR STEP 7 HERE */
                 //Date Converter
-                makeTextDate(dateArray) {
+                makeTextDate: function(dateArray) {
                     var year = dateArray[0];
                     var month = dateArray[1];
                     var day = dateArray[2];
@@ -127,24 +127,24 @@
                 },
                 
                 //Like Counter
-                like(movies[index].likes) {
-                    movies[index].likes++;
-                    return movies[index].likes;
+                like: function(index) {
+                    this.movies[index].likes++;
+                   
                 },
                 
                 //Dislike Counter
-                dislike(dislikes) {
-                    movies[index].dislikes;
-                    return movies[index].dislikes;
+                dislike: function(index) {
+                    this.movies[index].dislikes++;
+                   
                 },
                 
                 //Poster Click
-                posterClick(index) {
-        
+                posterClick: function(index) {
+                    this.movies[index].posterIndex++;
                 },
                 
                 //Time Converter
-                timeText(minutes) {
+                timeText: function(minutes) {
                     //variable reassignment
                     var num = minutes;
                     var hour = (num / 60);

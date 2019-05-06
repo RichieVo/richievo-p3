@@ -106,6 +106,9 @@ body {
     font-weight: 200;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: background 500ms;
+
+    background-color: #39D1B4;
+    color: #fff;
 }
 .dislikes {
     background-color: #f65a5b;
@@ -121,6 +124,8 @@ body {
     font-weight: 200;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: background 500ms;
+    background-color: #f65a5b;
+    color: #fff;
 }
 
 /* This makes sure your Github Button is centered */
