@@ -47,7 +47,7 @@
 						<p class="score"><i class="fa fa-star" aria-hidden="true"></i> {{ movies[index].iscore }} </p>
 						<p class="runtime">Runtime: {{ movies[index].runtime }} </p> 
 						<p class="released">Released:{{ movies[index].released }}| Rated:{{ movies[index].rating }}</p>
-						<p class="websites">Websites: <a>{{ movies[index].imdb }}</a> | <a>{{ movies[index].website }}</a></p>
+						<p class="websites">Websites: <a href= "{{ movies[index].imdb }}">IMDB </a> | <a href= "{{ movies[index].website }}">WEBSITE</a></p>
 						
 			            <div class="social">
 			                <p class="likes" @click="like(index)">
