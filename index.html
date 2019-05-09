@@ -40,12 +40,12 @@
 	        <div class="col-md-6" v-for="(movie, index) in movies" :key="index"> 
 	            <div class="thumbnail">
 
-						<img class="poster" v-bind:src = "movie.posters[movie.posterindex]"/>
-						<div class="imageInfo">{{ movies[index].posterIndex }}</div>
+						<img class="poster" v-bind:src = "movie.posters[movie.posterindex]" @click = "posterClick(index)"/>
+						<div class="imageInfo">{{ movies[index].posterindex }}</div>
 						
 						<p class="title">{{ movies[index].title }} ({{ movies[index].country }})</p> 
 						<p class="score"><i class="fa fa-star" aria-hidden="true"></i> {{ movies[index].iscore }} </p>
-						<p class="runtime">Runtime: {{ movies[index].runtime }}</p> 
+						<p class="runtime">Runtime: {{ movies[index].runtime }} </p> 
 						<p class="released">Released:{{ movies[index].released }}| Rated:{{ movies[index].rating }}</p>
 						<p class="websites">Websites: <a>{{ movies[index].imdb }}</a> | <a>{{ movies[index].website }}</a></p>
 						
@@ -77,86 +77,9 @@
   
   	<!-- This load the Vue.js code -->
 	<!-- <script type="text/javascript" src="site.js"> -->
-    <script type="text/javascript" >
+    <script type="text/javascript" src="site.js">
 
-    const vue_app = new Vue({
-          el: '#vue_app',
-          // This automatically imports your movies.json file and puts it into
-          //   the variable: movies
-          created () {
-                fetch('movies.json').then(response => response.json()).then(json => {
-                      this.movies = json
-                })
-          },
-          data: {
-                // This holds your movies.json data.
-                movies: [],
-
-                /* ADD ADDITIONAL VARIABLES FOR STEP 3 HERE */
-                title: 'IMDB + Richie’s Top 8 Movies',
-                owner: 'Richie',
-                github: 'https://github.com/RichieVo/richievo-p3'
-
-
-          },
-          methods: {
-                /* ADD FUNCTIONS/METHODS FOR STEP 7 HERE */
-                //Date Converter
-                makeTextDate: function(dateArray) {
-                    var year = dateArray[0];
-                    var month = dateArray[1];
-                    var day = dateArray[2];
-              
-                    //Month Converter
-                    var monthArray = new Array();
-                    monthArray[0] = "January";
-                    monthArray[1] = "February";
-                    monthArray[2] = "March";
-                    monthArray[3] = "April";
-                    monthArray[4] = "May";
-                    monthArray[5] = "June";
-                    monthArray[6] = "July";
-                    monthArray[7] = "August";
-                    monthArray[8] = "September";
-                    monthArray[9] = "October";
-                    monthArray[10] = "November";
-                    monthArray[11] = "December";
-                    var alphaMonth = monthArray[month];
-                    return alphaMonth + " " + day + ", " + year;
-              
-                },
-                
-                //Like Counter
-                like: function(index) {
-                    this.movies[index].likes++;
-                   
-                },
-                
-                //Dislike Counter
-                dislike: function(index) {
-                    this.movies[index].dislikes++;
-                   
-                },
-                
-                //Poster Click
-                posterClick: function(index) {
-                    this.movies[index].posterIndex++;
-                },
-                
-                //Time Converter
-                timeText: function(minutes) {
-                    //variable reassignment
-                    var num = minutes;
-                    var hour = (num / 60);
-                    var nhours = Math.floor(hour);
-                    var minute = (hour - nhours) * 60;
-                    var nminutes = Math.round(minute);
-                    return nhours + "h " + nminutes + "m ";
-                }
-                
-              
-          }
-    })  
+    
 
     </script>
 	 

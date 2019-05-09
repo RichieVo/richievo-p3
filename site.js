@@ -20,31 +20,91 @@
 // FOR STEP 16, ADD THREE OF YOUR OWN FAVORITE MOVIES WITH METADATA TO THE END OF THE JSON FILE LIST
 */
 
-
 const vue_app = new Vue({
-      el: '#vue_app',
-      // This automatically imports your movies.json file and puts it into
-      //   the variable: movies
-      created () {
-            fetch('movies.json').then(response => response.json()).then(json => {
-                  this.movies = json
-            })
-      },
-      data: {
-            // This holds your movies.json data.
-            movies: [],
+          el: '#vue_app',
+          // This automatically imports your movies.json file and puts it into
+          //   the variable: movies
+          created () {
+                fetch('movies.json').then(response => response.json()).then(json => {
+                      this.movies = json
+                })
+          },
+          data: {
+                // This holds your movies.json data.
+                movies: [],
 
-            /* ADD ADDITIONAL VARIABLES FOR STEP 3 HERE */
-            title: 'IMDB + Richie’s Top 8 Movies',
-            owner: 'Richie',
-            github: 'https://github.com/RichieVo/richievo-p3'
+                /* ADD ADDITIONAL VARIABLES FOR STEP 3 HERE */
+                title: 'IMDB + Richie’s Top 8 Movies',
+                owner: 'Richie',
+                github: 'https://github.com/RichieVo/richievo-p3'
 
 
-
-      },
-      methods: {
-            /* ADD FUNCTIONS/METHODS FOR STEP 7 HERE */
-      }
-})
-	
+          },
+          methods: {
+                /* ADD FUNCTIONS/METHODS FOR STEP 7 HERE */
+                //Date Converter
+                makeTextDate: function(dateArray) {
+                    var year = dateArray[0];
+                    var month = dateArray[1];
+                    var day = dateArray[2];
+              
+                    //Month Converter
+                    var monthArray = new Array();
+                    monthArray[0] = "January";
+                    monthArray[1] = "February";
+                    monthArray[2] = "March";
+                    monthArray[3] = "April";
+                    monthArray[4] = "May";
+                    monthArray[5] = "June";
+                    monthArray[6] = "July";
+                    monthArray[7] = "August";
+                    monthArray[8] = "September";
+                    monthArray[9] = "October";
+                    monthArray[10] = "November";
+                    monthArray[11] = "December";
+                    var alphaMonth = monthArray[month];
+                    return alphaMonth + " " + day + ", " + year;
+              
+                },
+                
+                //Like Counter
+                like: function(index) {
+                    this.movies[index].likes++;
+                   
+                },
+                
+                //Dislike Counter
+                dislike: function(index) {
+                    this.movies[index].dislikes++;
+                
+                   
+                },
+                
+                //Poster Click
+                posterClick: function(index) {
+                    
+                    if(this.movies[index].posterindex < this.movies[index].posters.length-1){
+                        this.movies[index].posterindex++;
+                    }
+                    else {
+                        this.movies[index].posterindex = 0;
+                    }
+                    
+                    
+                },
+                
+                //Time Converter
+                timeText: function(minutes) {
+                    //variable reassignment
+                    var num = minutes;
+                    var hour = (num / 60);
+                    var nhours = Math.floor(hour);
+                    var minute = (hour - nhours) * 60;
+                    var nminutes = Math.round(minute);
+                    return nhours + "h " + nminutes + "m ";
+                }
+                
+              
+          }
+    })  
 
